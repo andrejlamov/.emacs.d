@@ -796,8 +796,8 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 
 (use-package org-download
   :config
-  ;; Drag-and-drop to `dired`
-  (add-hook 'dired-mode-hook 'org-download-enable))
+  (add-hook 'dired-mode-hook 'org-download-enable)
+  (setq org-download-image-dir "~/org-roam/.org-downloads/"))
 
 ;; Python black formatter.
 ;; TODO: setup per project like prettier.
