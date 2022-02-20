@@ -1,3 +1,6 @@
+;; Add ~/.emacs.d/lisp to load path
+(add-to-list 'load-path "~/.emacs.d/lisp")
+
 ;; TODO: configure global whitespace mode to *lightly* *only* show trailing whitespace and if whitespace/tabs
 
 ;; Boostrap straight package manager.
@@ -42,8 +45,6 @@
   (bind-key* "M-SPC a l r" 'al-input-translit)
   (bind-key* "M-SPC a l e" 'al-input-default))
 
-;; Add ~/.emacs.d/lisp to load path
-(add-to-list 'load-path "~/.emacs.d/lisp")
 
 
 ;; Fix the base look no matter what theme.  
