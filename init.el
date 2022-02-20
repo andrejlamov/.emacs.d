@@ -816,3 +816,11 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 
 (use-package al-auto-commit-mode
   :straight nil)
+
+
+;; Wrap lines in a nicer way.
+(use-package adaptive-wrap
+  :config
+  (setq-default adaptive-wrap-extra-indent 2) ;; TODO: set smarter per mode?
+  (add-hook 'visual-line-mode-hook #'adaptive-wrap-prefix-mode)
+  (global-visual-line-mode +1))
