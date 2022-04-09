@@ -861,3 +861,22 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
   :init
   (add-hook 'sh-mode-hook 'flymake-shellcheck-load))
 
+
+(use-package sql
+  :straight nil
+  :bind*  (("M-SPC a p" . 'al-sql-postgres-connect))
+  :bind (:map sql-mode-map
+
+	      ("C-, e l" . 'sql-send-line-and-next)
+	      ("C-x C-e" . 'al-sql-send)
+	      ("C-, e e" . 'al-sql-send))
+  :config
+  (defun al-sql-send ()
+    (interactive)
+    (if mark-active
+	(call-interactively 'sql-send-region)
+      (call-interactively 'sql-send-paragraph)))
+  (defun al-sql-postgres-connect ()
+    (interactive)
+    (sql-set-product "postgres" )
+    (sql-set-sqli-buffer)))
