@@ -558,8 +558,23 @@
 
 
 ;; Magic.
-(use-package magit :defer t
-  :bind* (("M-SPC g" . magit-status)))
+(use-package magit
+  :config
+  (defun al-magit-fetch-rebase ()
+    (interactive)
+    (call-interactively 'magit-fetch-all)
+    (call-interactively 'magit-rebase))
+  
+  (defun al-magit-fetch-reset ()
+    (interactive)
+    (call-interactively 'magit-fetch-all)
+    (call-interactively 'magit-reset-hard))
+  
+  :bind* (("M-SPC g r" . al-magit-fetch-rebase)
+	  ("M-SPC g R" . al-magit-fetch-reset)
+	  ("M-SPC g b r" . magit-branch-reset)
+	  ("M-SPC g l" . magit-log)
+	  ("M-SPC g s" . magit-status)))
 
 
 ;; Json.
