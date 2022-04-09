@@ -363,89 +363,78 @@
 
 ;; Smartparens for working with sexps. ""
 (use-package smartparens
-       :bind (("C-l" . 'al-hydra-smartparens/body))
-       :init
-       (require 'smartparens-config)
-       (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-       (add-hook 'emacs-lisp-mode-hook #'smartparens-strict-mode)
-       :config
-       (setq al-open-rx (rx (or "(" "[" "{")))
-       (setq al-close-rx (rx (or ")" "]" "}")))
+  :bind (("C-l" . 'al-hydra-smartparens/body))
+  :init
+  (require 'smartparens-config)
+  (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
+  (add-hook 'emacs-lisp-mode-hook #'smartparens-strict-mode)
+  :config
+  (setq al-open-rx (rx (or "(" "[" "{")))
+  (setq al-close-rx (rx (or ")" "]" "}")))
 
-       (defun al-next-close ()
-	 (interactive)
-	 (re-search-forward al-close-rx))
-       (defun al-next-open ()
-	 (interactive)
-	 (re-search-forward al-open-rx))
-       (defun al-prev-close ()
-	 (interactive)
-	 (re-search-backward al-close-rx))
-       (defun al-prev-open ()
-	 (interactive)
-	 (re-search-backward al-open-rx))
+  (defun al-next-close ()
+    (interactive)
+    (re-search-forward al-close-rx))
+  (defun al-next-open ()
+    (interactive)
+    (re-search-forward al-open-rx))
+  (defun al-prev-close ()
+    (interactive)
+    (re-search-backward al-close-rx))
+  (defun al-prev-open ()
+    (interactive)
+    (re-search-backward al-open-rx))
 
-       (defhydra al-hydra-smartparens (:color
-				    pink)
-	 "Smartparens"
-	 ("M-n" al-next-close "next )]}" :column "Free move")
-	 ("M-N" al-next-open "next ([{")
-	 ("M-p" al-prev-open "prev ([{")
-	 ("M-P" al-prev-close "prev )]}")
+  (defhydra al-hydra-smartparens (:color
+				  pink)
+    "Smartparens"
+    ("M-n" al-next-close "next )]}" :column "Free move")
+    ("M-N" al-next-open "next ([{")
+    ("M-p" al-prev-open "prev ([{")
+    ("M-P" al-prev-close "prev )]}")
 
-	 ("a" sp-beginning-of-sexp "beg" :column "Tree move")
-	 ("e" sp-end-of-sexp "end")
-	 ("f" sp-forward-sexp "forward")
-	 ("b" sp-backward-sexp "back")
-	 ("n" sp-down-sexp "down")
-	 ("N" sp-backward-down-sexp "bw down")
-	 ("p" sp-up-sexp "up")
-	 ("P" sp-backward-up-sexp "bw up")
+    ("a" sp-beginning-of-sexp "beg" :column "Tree move")
+    ("e" sp-end-of-sexp "end")
+    ("f" sp-forward-sexp "forward")
+    ("b" sp-backward-sexp "back")
+    ("n" sp-down-sexp "down")
+    ("N" sp-backward-down-sexp "bw down")
+    ("p" sp-up-sexp "up")
+    ("P" sp-backward-up-sexp "bw up")
 
-	 ("h" sp-backward-slurp-sexp "bw slurp" :column "Slurp & Barf")
-	 ("H" sp-backward-barf-sexp "bw bar")
-	 ("l" sp-forward-slurp-sexp "slurp")
-	 ("L" sp-forward-barf-sexp "barf")
+    ("h" sp-backward-slurp-sexp "bw slurp" :column "Slurp & Barf")
+    ("H" sp-backward-barf-sexp "bw bar")
+    ("l" sp-forward-slurp-sexp "slurp")
+    ("L" sp-forward-barf-sexp "barf")
 
-	 ("R" sp-rewrap-sexp "rewrap" :column "Wraping")
-	 ("u" sp-unwrap-sexp "unwrapt")
-	 ("U" sp-backward-unwrap-sexp "bw wrap")
-	 ("(" sp-wrap-round "()")
-	 ("{" sp-wrap-curly "{}")
-	 ("[" sp-wrap-square "[]")
+    ("R" sp-rewrap-sexp "rewrap" :column "Wraping")
+    ("u" sp-unwrap-sexp "unwrapt")
+    ("U" sp-backward-unwrap-sexp "bw wrap")
+    ("(" sp-wrap-round "()")
+    ("{" sp-wrap-curly "{}")
+    ("[" sp-wrap-square "[]")
 
-	 ("S" sp-split-sexp "split" :column "Juggling" )
-	 ("s" sp-splice-sexp "splice")
-	 ("r" sp-raise-sexp "raise")
-	 ("j" sp-join-sexp "join")
-	 ("t" sp-transpose-sexp "transpose")
-	 ("A" sp-absorb-sexp "absorb")
-	 ("E" sp-emit-sexp "emit")
-	 ("o" sp-convolute-sexp "convolute")
+    ("S" sp-split-sexp "split" :column "Juggling" )
+    ("s" sp-splice-sexp "splice")
+    ("r" sp-raise-sexp "raise")
+    ("j" sp-join-sexp "join")
+    ("t" sp-transpose-sexp "transpose")
+    ("A" sp-absorb-sexp "absorb")
+    ("E" sp-emit-sexp "emit")
+    ("o" sp-convolute-sexp "convolute")
 
-	 ("c" sp-change-inner "ch inner" :exit t :column "Edit")
-	 ("C" sp-change-enclosing "ch outer" :exit t)
+    ("c" sp-change-inner "ch inner" :exit t :column "Edit")
+    ("C" sp-change-enclosing "ch outer" :exit t)
 
-	 ("M-d" sp-kill-sexp "kill")
-	 ("C-w" sp-backward-kill-sexp "bw kill")
-	 ("M-w" sp-copy-sexp "copy")
+    ("M-d" sp-kill-sexp "kill")
+    ("C-w" sp-backward-kill-sexp "bw kill")
+    ("M-w" sp-copy-sexp "copy")
 
-	 ("v" er/expand-region "expand region")
+    ("v" er/expand-region "expand region")
 
-	 ("q" nil "quit" :column "quit")
-	 ("C-l" nil "quit")
-	 ("g" nil "quit"))
-
-       ;; Fool around with auto triggering the smartparens hydra.
-       ;; TODO: Avy on terms in region? 
-       (quote
-	(progn
-	  (defun al-smartparens-auto-hydra ()
-	    (when (string= "(" (string (following-char)))
-	      (hydra-smartparens/body)))
-	  (add-hook 'post-command-hook #'al-smartparens-auto-hydra)))
-
-       )
+    ("q" nil "quit" :column "quit")
+    ("C-l" nil "quit")
+    ("g" nil "quit")))
 
 
 ;; Winner undo.
