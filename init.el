@@ -650,7 +650,8 @@
 
 ;; Handle docker containers.
 (use-package docker
-  :bind ("C-c d" . docker))
+  :bind* (("M-SPC d d" . docker)
+	  ("M-SPC d c" . docker-compose)))
 
 
 (use-package multiple-cursors
