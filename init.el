@@ -154,6 +154,7 @@
   :defer t
   :bind* (("M-SPC f r" . crux-rename-file-and-buffer)
 	  ("M-SPC B r" . crux-rename-file-and-buffer)
+	  ("M-SPC f d" . 'crux-delete-file-and-buffer)
 	  ("C-k" . crux-smart-kill-line))
   :bind (("M-o" . 'crux-smart-open-line)
 	 ("M-O" . 'crux-smart-open-line-above)))
@@ -196,6 +197,7 @@
   :straight nil
   :bind (:map emacs-lisp-mode-map
 	      ("C-x C-e" . al-eval-sexp-dwim)
+	      ("C-, e b" . eval-buffer)
 	      ("C-, e e" . al-eval-sexp-dwim))
   :bind* (("C-w" . al-backward-kill-dwim)
 	  ("M-d" . al-kill-word-dwim)))
@@ -219,10 +221,10 @@
   (setq prefix-help-command #'embark-prefix-help-command)
   :config
   (require 'al-file-buffer-window-utils)
-  (define-key embark-buffer-map "O" #'al-switch-to-buffer-to-the-right)
   
+  (define-key embark-buffer-map "O" #'al-switch-to-buffer-to-the-right)
   (define-key embark-file-map "O" #'al-find-file-to-the-right)
-  )
+  (define-key embark-file-map "r" #'al-rename-file-and-buffer))
 
 
 
