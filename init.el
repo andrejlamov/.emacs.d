@@ -744,7 +744,10 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 	      ("C-, e e" . al-python-shell-send-dwim)
 	      ("C-, e f" . python-shell-send-defun)
 	      ("C-, s" . run-python)
-	      ("C-, a" . pyvenv-activate))
+	      ("C-, a" . pyvenv-activate)
+	      ("C-<tab>" . 'python-indent-shift-right)
+	      ("S-<tab>" . 'python-indent-shift-left)
+	      )
   :config
   (defun al-python-shell-send-dwim ()
     (interactive)
