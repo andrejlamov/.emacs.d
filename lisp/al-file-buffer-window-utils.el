@@ -33,4 +33,19 @@
   (interactive)
   (revert-buffer t t))
 
+;;;###autoload
+(defun al-rename-file-and-buffer (filename)
+  "Rename given filename. Copied and modified from crux."
+  (interactive "f")
+  (if (not (and filename (file-exists-p filename)))
+      (rename-buffer (read-from-minibuffer "New name: " (buffer-name)))
+    (let* ((new-name (read-file-name "New name: " (file-name-directory filename)))
+           (containing-dir (file-name-directory new-name)))
+      (make-directory containing-dir t)
+      (cond
+       ((vc-backend filename) (vc-rename-file filename new-name))
+       (t
+        (rename-file filename new-name t)
+        (set-visited-file-name new-name t t))))))
+
 (provide 'al-file-buffer-window-utils)
