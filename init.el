@@ -854,3 +854,10 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
   (setq-default adaptive-wrap-extra-indent 2) ;; TODO: set smarter per mode?
   (add-hook 'visual-line-mode-hook #'adaptive-wrap-prefix-mode)
   (global-visual-line-mode +1))
+
+
+(use-package flymake-shellcheck
+  :commands flymake-shellcheck-load
+  :init
+  (add-hook 'sh-mode-hook 'flymake-shellcheck-load))
+
