@@ -236,9 +236,9 @@
   (add-to-list 'load-path "~/.emacs.d/straight/repos/vertico/extensions/")
 
   ;; Show vertico in a real buffer.
-  (require 'vertico-buffer)
-  (vertico-buffer-mode)
-  (setq vertico-buffer-display-action '(display-buffer-in-side-window (side . bottom) (window-height . 0.3)))
+  '(require 'vertico-buffer)
+  '(vertico-buffer-mode)
+  '(setq vertico-buffer-display-action '(display-buffer-in-side-window (side . bottom) (window-height . 0.3)))
 
   ;; Avy actions on vertico alternativs.
   (require 'vertico-quick)
