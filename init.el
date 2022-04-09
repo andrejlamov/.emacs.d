@@ -786,7 +786,12 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 
 
 ;; Prettier.
-(use-package prettier :defer t)
+(use-package prettier
+  :defer t
+  :init
+  (dir-locals-set-class-variables 'prettier-js
+                                '((web-mode . ((eval . (prettier-mode t))))))
+  (dir-locals-set-directory-class "~/code/bikg-triage-svc/frontend/" 'prettier-js))
 
 
 ;; Visual undo.
