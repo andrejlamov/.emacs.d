@@ -846,7 +846,7 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 	  ("M-SPC w 2" . 'eyebrowse-switch-to-window-config-2)
 	  ("M-SPC w 3" . 'eyebrowse-switch-to-window-config-3)
 	  ("M-SPC w 4" . 'eyebrowse-switch-to-window-config-4)
-	  ("M-SPC w §" . 'eyebrowse-rename-window-config))
+	  ("M-SPC w r" . 'eyebrowse-rename-window-config))
   :config
   (eyebrowse-mode 1))
 
