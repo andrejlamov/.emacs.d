@@ -654,6 +654,19 @@
 	  ("M-SPC d c" . docker-compose)))
 
 
+(use-package good-scroll
+  :bind* (("M-SPC w n" . al-scroll/body)
+	  ("M-SPC w p" . al-scroll/body))
+  :config
+  (good-scroll-mode 1)
+  (defhydra al-scroll (:color pink)
+    "Good scroll"
+    ("n" good-scroll-up)
+    ("p" good-scroll-down)
+    ("q" nil)
+    )
+  )
+
 (use-package multiple-cursors
   :bind* (("M-l" . al-hydra-mc/body)
 	  ("C->" . mc/mark-next-like-this)
