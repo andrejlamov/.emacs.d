@@ -458,10 +458,10 @@
 
 ;; Fuzzier completion for Vertico.
 (use-package orderless
-    :init
-    (setq completion-styles '(orderless)
-	  completion-category-defaults nil
-	  completion-category-overrides '((file (styles partial-completion)))))
+  :init
+  (setq completion-styles '(orderless)
+	completion-category-defaults nil
+	completion-category-overrides '((file (styles partial-completion)))))
 
 
 ;; Save minibuffer, shell, kill-ring etc history to a file.
