@@ -771,6 +771,7 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
     (interactive)
     (save-window-excursion
       (python-shell-switch-to-shell)
+      (end-of-buffer)
       (insert string)
       (comint-send-input)))
 
