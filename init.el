@@ -365,6 +365,10 @@
   (setq completion-in-region-function #'consult-completion-in-region))
 
 
+;; Dash.
+(use-package dash :defer t)
+
+
 ;; Avy.
 (use-package avy
   :bind* (("C-j" . avy-goto-char-timer)
