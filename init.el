@@ -679,13 +679,25 @@
 	  ("M-SPC w p" . al-scroll/body))
   :config
   (good-scroll-mode 1)
+
+  (defun al-good-scroll-up-other-window ()
+    (interactive)
+    (save-window-excursion
+      (other-window 1)
+      (good-scroll-up)))
+  (defun al-good-scroll-down-other-window ()
+    (interactive)
+    (save-window-excursion
+      (other-window 1)
+      (good-scroll-down)))
+  
   (defhydra al-scroll (:color pink)
     "Good scroll"
     ("n" good-scroll-up)
     ("p" good-scroll-down)
-    ("q" nil)
-    )
-  )
+    ("M-n" #'al-good-scroll-up-other-window)
+    ("M-p" #'al-good-scroll-down-other-window)
+    ("q" nil)))
 
 (use-package multiple-cursors
   :bind* (("M-l" . al-hydra-mc/body)
