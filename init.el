@@ -759,8 +759,8 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
     (interactive)
     (al-python-run-string-in-python-shell
      (buffer-substring
-    (save-excursion (python-nav-beginning-of-statement))
-    (save-excursion (python-nav-end-of-statement)))))
+      (save-excursion (python-nav-beginning-of-statement))
+      (save-excursion (python-nav-end-of-statement)))))
 
   (defun al-python-run-region-in-python-shell ()
     (interactive)
