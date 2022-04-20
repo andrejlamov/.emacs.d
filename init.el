@@ -907,3 +907,8 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
     (interactive)
     (sql-set-product "postgres" )
     (sql-set-sqli-buffer)))
+
+
+;; Jump back to last change using undo history.
+(use-package goto-last-change
+  :bind* (("S-C-o" . goto-last-change)))
