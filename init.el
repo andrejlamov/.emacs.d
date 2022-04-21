@@ -183,17 +183,6 @@
   (setq writeroom-width 120))
 
 
-;; TODO: write your own shell popper!
-(use-package shell-pop
-  :bind* (("M-SPC a s" . shell))
-  :bind (:map shell-mode-map
-	      ("C-, o" . comint-clear-buffer))
-  :config
-  (require 'shell)
-  ;; Fix shell opening in wrong window. 
-  (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist))
-
-
 ;; My file & buffer functions 
 (use-package al-file-buffer-window-utils
   :defer t
@@ -924,3 +913,11 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 ;; Jump back to last change using undo history.
 (use-package goto-last-change
   :bind* (("S-C-o" . goto-last-change)))
+
+
+(use-package al-shell
+  :straight nil
+  :bind* (("M-SPC a s s" . 'al-shell-named)
+	  ("M-SPC a s c" . 'al-shell-some-cd-to-this-dir))
+  :config
+  (al-shell-consult-setup))
