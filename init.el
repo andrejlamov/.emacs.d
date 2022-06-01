@@ -550,7 +550,11 @@
 	 ("C-c p w" . cape-dict)
 	 ("C-c p \\" . cape-tex)
 	 ("C-c p &" . cape-sgml)
-	 ("C-c p r" . cape-rfc1345))
+	 ("C-c p r" . cape-rfc1345)
+	 ("C-c p t" . al-cape-tailwind)
+	 )
+  :config
+  (require 'al-cape-tailwind)
   :init
   ;; Add `completion-at-point-functions', used by `completion-at-point'.
   (add-to-list 'completion-at-point-functions #'cape-file)
