@@ -967,3 +967,7 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
   (wrap-region-add-wrapper "[" "]")
   (wrap-region-global-mode t))
 
+(use-package tdd
+  :defer t
+  :straight (emacs-tdd :type git :host github :repo "jorgenschaefer/emacs-tdd"))
+
