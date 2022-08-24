@@ -964,7 +964,8 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 (use-package al-shell
   :straight nil
   :bind* (("M-SPC a s s" . 'al-shell-named)
-	  ("M-SPC a s c" . 'al-shell-some-cd-to-this-dir))
+	  ("M-SPC a s c" . 'al-shell-some-cd-to-this-dir)
+	  ("M-SPC a s q" . 'comint-clear-buffer))
   :config
   (al-shell-consult-setup))
 (use-package wrap-region
