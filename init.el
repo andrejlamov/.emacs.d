@@ -142,16 +142,19 @@
 (setq enable-recursive-minibuffers t)
 
 ;; The light modus theme.
-(use-package modus-themes
+'(use-package modus-themes
   :init
   (setq modus-themes-italic-constructs t
 	modus-themes-bold-constructs nil
-	modus-themes-region '(bg-only no-extend))
+	modus-themes-region '( accented))
   (modus-themes-load-themes)
   :config
+  (modus-themes-load-vivendi)
   (al-setup-look)
-  (modus-themes-load-operandi))
-
+  (custom-set-faces
+   '(avy-lead-face ((t (:inherit (bold modus-themes-reset-soft) :background "#0050af" :height 0.8))))
+   '(aw-leading-char-face ((t (:inherit (bold modus-themes-reset-soft) :foreground "#fe6060" :height 1)))))
+  )
 
 ;; De facto string library.
 (use-package s :defer t)
