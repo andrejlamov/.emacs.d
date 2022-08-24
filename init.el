@@ -26,6 +26,9 @@
 (setq use-package-compute-statistics t)
 
 
+;; Compile
+(setq compilation-scroll-output 'first-error)
+
 ;; Auto save when idle
 '(auto-save-visited-mode +1)
 '(setq auto-save-visited-interval 0)
