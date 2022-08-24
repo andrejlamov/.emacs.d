@@ -402,15 +402,39 @@
 
 ;; Avy.
 (use-package avy
-  :bind* (("C-j" . avy-goto-char-timer)
-	  ("C-S-j" . avy-pop-mark)
-	  ("M-j" . avy-goto-line)
-	  ("C-z" . avy-goto-char-in-line))
-  :config
-  (avy-setup-default)
-  (global-set-key (kbd "C-c C-j") 'avy-resume))
+  :bind (("C-'" . avy-goto-char-timer)
+	 ("C-j" . avy-goto-char-timer)
+	 ("C-S-j" . avy-pop-mark)
+	 ("M-j" . avy-goto-line)
+	 ("C-z" . avy-goto-char-in-line)
+	 ("C-c C-j" . avy-resume))
+  :init
 
-  
+  :config
+
+    
+  (defun avy--overlay-pre-at (path leaf)
+  "Create an overlay with PATH at LEAF.
+PATH is a list of keys from tree root to LEAF.
+LEAF is normally ((BEG . END) . WND)."
+  (let* ((path (mapcar #'avy--key-to-char path))
+         (str (propertize
+               (string (car (last path)))
+               'face 'avy-lead-face)))
+    (avy--overlay
+     str
+     (avy-candidate-beg leaf) nil
+     (avy-candidate-wnd leaf))))
+
+  (defun avy--style-fn (style)
+    "Transform STYLE symbol to a style function."
+    #'avy--overlay-pre-at)
+
+  (defun al-avy-embark-stay (pt)
+    (save-excursion
+      (goto-char pt)
+      (embark-act)))
+   (add-to-list 'avy-dispatch-alist '(?. . al-avy-embark-stay)))
 
 ;; Smartparens for working with sexps. ""
 (use-package smartparens
