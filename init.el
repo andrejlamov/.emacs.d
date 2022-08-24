@@ -141,6 +141,19 @@
 ;; Enable recursive minibuffers
 (setq enable-recursive-minibuffers t)
 
+
+(use-package autothemer
+  :defer t)
+
+
+;; Matrix mood.
+(use-package vegetative-theme
+  :straight (emacs-theme-vegetative :type git :host github :repo "emacsfodder/emacs-theme-vegetative")
+  :config
+  (al-setup-look)
+  (load-theme 'vegetative t)
+  )
+
 ;; The light modus theme.
 '(use-package modus-themes
   :init
