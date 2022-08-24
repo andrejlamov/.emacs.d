@@ -971,3 +971,11 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
   :defer t
   :straight (emacs-tdd :type git :host github :repo "jorgenschaefer/emacs-tdd"))
 
+(use-package avy-smartypants
+  :straight nil
+  :bind* (("C-l" . 'avy-smartypants-hydra/body))
+  :config
+  (require 'smartparens))
+
+(use-package cider)
+
