@@ -71,8 +71,18 @@
   (global-hl-line-mode 1)
   (setq inhibit-startup-message t
       inhibit-startup-echo-area-message t)
-  (set-frame-font "-*-IBM Plex Mono-normal-italic-normal-*-14-*-*-*-m-0-iso10646-1"))
+  (al-setup-font)
+  )
 
+
+(defun al-setup-font ()
+  (interactive)
+  (let ((x (display-pixel-width))
+	(y (display-pixel-height)))
+    (set-frame-font "-*-IBM Plex Mono-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1")
+    (if (and (> y 1000)(> x 2000))
+	(set-face-attribute 'default nil :height 140)
+      (set-face-attribute 'default nil :height 100))))
 
 ;; Treat words as sub-words.
 (global-subword-mode +1)
