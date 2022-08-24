@@ -718,6 +718,7 @@ LEAF is normally ((BEG . END) . WND)."
 
 (use-package multiple-cursors
   :bind* (("M-l" . al-hydra-mc/body)
+	  ("M-SPC l c" . 'al-hydra-mc/body)
 	  ("C->" . mc/mark-next-like-this)
 	  ("C-<" . mc/mark-previous-like-this)
 	  ("C-c C-<" . mc/mark-all-like-this))
