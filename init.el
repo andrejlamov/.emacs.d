@@ -108,6 +108,7 @@
 ;; Use isearch regexp by default.
 (bind-key* "C-s" 'isearch-forward-regexp)
 (bind-key* "C-r" 'isearch-backward-regexp)
+(unbind-key "M-c")
 
 
 ;; Truncate lines toggle.
