@@ -245,8 +245,9 @@
 ;; Hydra.
 ;; TODO: https://gitlab.com/jjzmajic/hercules.el
 ;; TODO: custom generate sticky hydras from keymaps?
-(use-package hydra :defer t)
-
+(use-package hydra :defer t
+  :config
+  (setq hydra-hint-display-type 'lv))
 
 ;; Context aware menu that works everywhere.
 (use-package embark
