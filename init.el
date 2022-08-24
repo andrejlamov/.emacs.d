@@ -874,6 +874,9 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
   :ensure t
   :custom
   (org-roam-directory (file-truename "~/org-roam/"))
+  :bind (:map org-mode-map
+	      ("M-n" . 'org-move-subtree-down)
+	      ("M-p" . 'org-move-subtree-up))
   :bind* (("M-SPC o l" . 'org-roam-buffer-toggle)
           ("M-SPC o f" . 'org-roam-node-find)
           ("M-SPC o g" . 'org-roam-graph)
