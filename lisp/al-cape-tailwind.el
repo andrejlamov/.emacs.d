@@ -2,6 +2,7 @@
 (require 'dash)
 (require 's)
 
+;; TODO: can we generate all of these from the actual css files & custom config?
 ;; version 3.0.23
 (setq al-cape-tailwind-keywords
       '(
@@ -9291,7 +9292,7 @@
 		 (s-equals? prev " ")
 		 (s-equals? prev "\"")))
 	     (point)
-	   (search-backward " ")
+	   (re-search-backward (rx (or " " "\"")))
 	   (forward-char)
 	   (point)))
       ,(point)

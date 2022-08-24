@@ -545,20 +545,21 @@ LEAF is normally ((BEG . END) . WND)."
 
 ;; Smarter completions.
 (use-package cape
-  :bind (("C-c p p" . completion-at-point) ;; capf
-	 ("C-c p t" . complete-tag)        ;; etags
-	 ("C-c p d" . cape-dabbrev)        ;; or dabbrev-completion
-	 ("C-c p f" . cape-file)
-	 ("C-c p k" . cape-keyword)
-	 ("C-c p s" . cape-symbol)
-	 ("C-c p a" . cape-abbrev)
-	 ("C-c p i" . cape-ispell)
-	 ("C-c p l" . cape-line)
-	 ("C-c p w" . cape-dict)
-	 ("C-c p \\" . cape-tex)
-	 ("C-c p &" . cape-sgml)
-	 ("C-c p r" . cape-rfc1345)
-	 ("C-c p t" . al-cape-tailwind)
+  :bind (("C-<tab> p" . completion-at-point) ;; capf
+	 ("C-<tab> t" . complete-tag)        ;; etags
+	 ("C-<tab> d" . cape-dabbrev)        ;; or dabbrev-completion
+	 ("C-<tab> f" . cape-file)
+	 ("C-<tab> k" . cape-keyword)
+	 ("C-<tab> s" . cape-symbol)
+	 ("C-<tab> a" . cape-abbrev)
+	 ("C-<tab> i" . cape-ispell)
+	 ("C-<tab> l" . cape-line)
+	 ("C-<tab> w" . cape-dict)
+	 ("C-<tab> \\" . cape-tex)
+	 ("C-<tab> &" . cape-sgml)
+	 ("C-<tab> <tab>" . hippie-expand)
+	 ("C-<tab> r" . cape-rfc1345)
+	 ("C-<tab> t" . al-cape-tailwind)
 	 )
   :config
   (require 'al-cape-tailwind)
