@@ -258,6 +258,7 @@
    ("C-h B" . embark-bindings))
   :init
   (setq prefix-help-command #'embark-prefix-help-command)
+  (setq embark-prompter 'embark-keymap-prompter)
   :config
   (require 'al-file-buffer-window-utils)
   
@@ -292,11 +293,7 @@
 
 ;; Practical commands (grep, find, git grep, buffer lists etc) that output via `completing-read'.
 (use-package consult
-  ;; M-SPC binding
-  :bind* (("M-SPC s s" . consult-line)
-	  ("M-SPC s g" . consult-git-grep)
-	  ("M-SPC s f" . consult-find)
-	  ("M-SPC s o" . consult-outline))
+  :bind* (	 ("C-x B" . consult-buffer)) ;; orig. switch-to-buffer)
   :bind (
 	 ;; C-c bindings (mode-specific-map)
 	 ("M-p" . consult-history)
@@ -306,7 +303,7 @@
          
 	 ;; C-x bindings (ctl-x-map)
 	 ("C-x M-:" . consult-complex-command) ;; orig. repeat-complex-command
-	 ("C-x b" . consult-buffer) ;; orig. switch-to-buffer
+	 ("C-x B" . consult-buffer) ;; orig. switch-to-buffer
 	 ("C-x 4 b" . consult-buffer-other-window) ;; orig. switch-to-buffer-other-window
 	 ("C-x 5 b" . consult-buffer-other-frame) ;; orig. switch-to-buffer-other-frame
 
@@ -316,8 +313,8 @@
 	 ("C-M-#" . consult-register)
 
 	 ;; Other custom bindings
-	 ("M-y" . consult-yank-pop)	  ;; orig. yank-pop
-	 ("<help> a" . consult-apropos)	  ;; orig. apropos-command
+	 ("M-y" . consult-yank-pop)	;; orig. yank-pop
+	 ("<help> a" . consult-apropos)	;; orig. apropos-command
 
 	 ;; M-g bindings (goto-map)
 	 ("M-g e" . consult-compile-error)
@@ -336,7 +333,7 @@
 	 ("M-s r" . consult-ripgrep)
 	 ("M-s l" . consult-line)
 	 ("M-s L" . consult-line-multi)
-	 ("M-s m" . consult-multi-occur)
+	 ("M-s m" . consult-multi-loccur)
 	 ("M-s k" . consult-keep-lines)
 	 ("M-s u" . consult-focus-lines)
 
@@ -366,11 +363,22 @@
   ;; Configure other variables and modes in the :config section,
   ;; after lazily loading the package.
   :config
-  (setq consult-preview-key (kbd "M-."))
+  (defun al-consult-grep-in-here (file)
+    "Grep in this directory."
+    (consult-grep (file-name-directory file) nil))
+
+  (defun al-consult-git-grep-in-here (file)
+    "Git-grep in this directory."
+    (consult-git-grep (file-name-directory file) nil))
+  
+  (define-key embark-file-map (kbd "g") #'al-consult-grep-in-here)
+  (define-key embark-file-map (kbd "G") #'al-consult-git-grep-in-here)
+
+  (setq consult-preview-key (list :debounce 0.3 'any))
   
   (consult-customize
    consult-theme
-   :preview-key '(:debounce 0.2 any)
+   :preview-key '(:debounce 0.42 any)
    consult-ripgrep consult-git-grep consult-grep
    consult-bookmark consult-recent-file consult-xref
    consult--source-recent-file consult--source-project-recent-file consult--source-bookmark
