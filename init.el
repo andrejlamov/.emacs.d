@@ -639,7 +639,8 @@ LEAF is normally ((BEG . END) . WND)."
 (use-package web-mode
   :config
   (setq web-mode-content-types-alist
-	'(("jsx" . "\\.js[x]?\\'")))
+	'(("jsx" . "\\.js[x]?\\'"))
+	web-mode-auto-quote nil)
   :mode ("\\.tsx" "\\.jsx\\'" "\\.js\\'" "\\.html" "\\.css")
   :bind
   (:map web-mode-map
