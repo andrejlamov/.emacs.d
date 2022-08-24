@@ -585,15 +585,25 @@ LEAF is normally ((BEG . END) . WND)."
     (interactive)
     (call-interactively 'magit-fetch-all)
     (call-interactively 'magit-rebase))
+
+  (defun al-magit-fetch-branch-checkout ()
+    (interactive)
+    (call-interactively 'magit-fetch-all)
+    (call-interactively 'magit-branch-and-checkout)
+    )
+  
   
   (defun al-magit-fetch-reset ()
     (interactive)
     (call-interactively 'magit-fetch-all)
     (call-interactively 'magit-reset-hard))
   
+  (setq magit-diff-refine-hunk 'all)
   :bind* (("M-SPC g r" . al-magit-fetch-rebase)
 	  ("M-SPC g R" . al-magit-fetch-reset)
+	  ("M-SPC g c" . al-magit-fetch-branch-checkout)
 	  ("M-SPC g b r" . magit-branch-reset)
+	  ("C-x g" . magit-status)
 	  ("M-SPC g l" . magit-log)
 	  ("M-SPC g s" . magit-status)))
 
