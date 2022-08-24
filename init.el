@@ -781,6 +781,16 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
   :bind* (("M-SPC b" . consult-projectile))
   :straight (consult-projectile :type git :host gitlab :repo "OlMon/consult-projectile" :branch "master"))
 
+(use-package consult-ls-git
+  :straight (consult-ls-git :type git :host github :repo "rcj/consult-ls-git")
+  :config
+  (require 'al-shell)
+  (add-to-list
+   'consult-ls-git-sources
+   al-shell-consult-source
+   t)
+  :bind*
+  (("C-x b" . consult-ls-git)))
 
 ;; Python virtual env that works. 
 (use-package pyvenv

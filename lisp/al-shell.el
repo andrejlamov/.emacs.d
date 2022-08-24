@@ -4,7 +4,7 @@
 
 ;;;###autoload
 (defun al-shell-named (name)
-  (interactive "s")
+  (interactive "sName: ")
   (shell (s-concat "*" name "*")))
 
 ;;;###autoload
@@ -16,6 +16,7 @@
     (insert (s-concat "cd " cwd))
     (comint-send-input)))
 
+;;;###autoload
 (defvar al-shell-consult-source
   (list :name     "Shells"
         :category 'buffer
