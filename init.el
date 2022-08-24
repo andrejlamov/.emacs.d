@@ -932,3 +932,11 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 	  ("M-SPC a s c" . 'al-shell-some-cd-to-this-dir))
   :config
   (al-shell-consult-setup))
+(use-package wrap-region
+  :config
+  (wrap-region-add-wrapper "`" "`")
+  (wrap-region-add-wrapper "{" "}")
+  (wrap-region-add-wrapper "(" ")")
+  (wrap-region-add-wrapper "[" "]")
+  (wrap-region-global-mode t))
+
