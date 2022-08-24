@@ -613,21 +613,26 @@ LEAF is normally ((BEG . END) . WND)."
 
 
 ;; LSP.
-(use-package lsp-mode
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  :hook ((web-mode . lsp)
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp
+(use-package eglot
   :config
-  (add-to-list 'lsp-language-id-configuration '(web-mode . "javascriptreact"))
-  )
+  (setq eglot-events-buffer-size 1000))
 
-(use-package lsp-tailwindcss
-  :straight (lsp-tailwindcss :type git :host github :repo "merrickluo/lsp-tailwindcss")
-  :init
-  (setq lsp-tailwindcss-add-on-mode t)
-  )
+(use-package typescript-mode)
+
+;; (use-package lsp-mode
+;;   :init
+;;   (setq lsp-keymap-prefix "C-c l")
+;;   :hook ((web-mode . lsp)
+;;          (lsp-mode . lsp-enable-which-key-integration))
+;;   :commands lsp
+;;   :config
+;;   (add-to-list 'lsp-language-id-configuration '(web-mode . "javascriptreact"))
+;;   )
+
+;; (use-package lsp-tailwindcss
+;;   :straight (lsp-tailwindcss :type git :host github :repo "merrickluo/lsp-tailwindcss")
+;;   :init
+;;   (setq lsp-tailwindcss-add-on-mode t))
 
 
 ;; Web-mode.
@@ -787,6 +792,12 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 (use-package anaconda-mode
   :hook (python-mode . anaconda-mode))
 
+;; LSP python.
+'(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))  ; or lsp-deferred
 
 ;; The built-in python mode with some tweaks.
 (use-package python-mode
