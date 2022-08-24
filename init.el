@@ -842,10 +842,11 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
       (python-shell-switch-to-shell)
       (end-of-buffer)
       (insert string)
-      (comint-send-input)))
+      (comint-send-input)
+      (end-of-buffer))
 
   (setq python-shell-interpreter "ipython"
-        python-shell-interpreter-args "-i --simple-prompt --InteractiveShell.display_page=True"))
+        python-shell-interpreter-args "-i --simple-prompt --InteractiveShell.display_page=True")))
 
 
 ;; Guess the indent.
