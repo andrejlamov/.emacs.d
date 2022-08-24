@@ -692,8 +692,8 @@ LEAF is normally ((BEG . END) . WND)."
 
 
 (use-package good-scroll
-  :bind* (("M-SPC w n" . al-scroll/body)
-	  ("M-SPC w p" . al-scroll/body))
+  :bind* (("C-S-n" . good-scroll-up)
+	  ("C-S-p" . good-scroll-down))
   :config
   (good-scroll-mode 1)
 
