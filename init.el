@@ -883,11 +883,11 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 	  ("M-SPC o d" . 'org-roam-dailies-goto-today)
           ("M-SPC o j" . 'org-roam-dailies-capture-today))
   :config
-  (setq org-agenda-files '("~/org-roam/" "~/org-roam/daily"))
-  ;; Lets try hopscotch-like
-  (setq org-todo-keywords
+  (setq org-agenda-files '("~/org-roam/" "~/org-roam/daily")
+	org-agenda-clockreport-parameter-plist  '(:link t :maxlevel 2 :stepskip 0 :fileskip0 t)
+	org-todo-keywords
 	'(
-	  (sequence "MUST-TODAY(t)" "MUST-LATER(l)"  "SHOULD-TODAY(T)" "SHOULD-LATER(L)" "COULD(c)" "|" "DONE(d)" )))
+	  (sequence "TODO(t)" "PAUS(p)"  "|" "DONE(d)" )))
 
   (defun al-agenda ()
     (interactive)
