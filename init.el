@@ -1,3 +1,6 @@
+;; Show stracktrace when I mess up this file.
+(setq debug-on-error t)
+
 ;; Add ~/.emacs.d/lisp to load path
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
