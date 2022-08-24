@@ -458,10 +458,18 @@ LEAF is normally ((BEG . END) . WND)."
 
 ;; Avy on windows.
 (use-package ace-window
-  :init
-  (bind-key* "C-o" 'ace-window)
+  :bind
+  (("C-o" . 'ace-window))
   :config
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  (setq aw-dispatch-when-more-than 1)
+  
+  (defun al-embark-ace-buffer (buffer-or-name &optional rest)
+    (setq consult-preview-key nil)
+    (ace-select-window)
+    (switch-to-buffer buffer-or-name)
+    (setq consult-preview-key (list :debounce 0.3 'any)))
+  (define-key embark-buffer-map (kbd "\M-o") #'al-embark-ace-buffer))
 
 
 ;; Fuzzier completion for Vertico.
