@@ -18,6 +18,7 @@
  ("docker.el" . "8d0429d6bd7f7a74cd58b00ac26a0c9148706124")
  ("dockerfile-mode" . "52c6c00da1d31c0b6c29c74335b3af63ed6bf06c")
  ("dtrt-indent" . "d4fd1b4977eb0d534844fddf01c3c51c70c57205")
+ ("editorconfig-emacs" . "1f6f16c24fd0030322d59c2853067a6dccc9e736")
  ("eglot" . "000b7fdce93ed29c505a7fa75baaf87094fd690a")
  ("el-get" . "bf3dba444dcd240b8cb358a0850c8c5a92606134")
  ("eldoc" . "1835c4f2ab0140a9a40fc584757d2a9ca644a20c")
@@ -30,7 +31,6 @@
  ("emacsmirror-mirror" . "6c7277786c761cd01fa3b8a8729472ea4ed90b2b")
  ("emacsql" . "373975cbccf7776af771e23f86043b236a330702")
  ("embark" . "5d0459d27aa7cf738b5af36cf862723a62bef955")
- ("exec-path-from-shell" . "6336db9be13d46e2d4bc3b50bc37a3fbf30fdc9e")
  ("expand-region.el" . "c5c4362741deebb0985a8a29f9b8b0e25160764a")
  ("eyebrowse" . "f7e129b84183367f54f0d0d3c9db8540f754bd8d")
  ("f.el" . "85c91f95f8b98e153fd959ae467b46bf79622c5d")
@@ -54,6 +54,7 @@
  ("melpa" . "1fb027a2f96f47ca0f06d78e37049042fe56b413")
  ("multiple-cursors.el" . "1e4842d1297241a5277bfd5c7bfab9e8711da60a")
  ("no-littering" . "d9db6d88ccae0727fa96125fae8601cac80efde0")
+ ("nongnu-elpa" . "baad781689346353a219a786fc68ff476c6e013e")
  ("nvm.el" . "c214762fd6f539ec3e1fd8198cefbdb4b428b19c")
  ("orderless" . "8b9af2796fa0eb87eea4140bc08d16880a493803")
  ("org" . "3c11e9df6e8353ae5d7e1179f9bcb114f469c942")
@@ -86,4 +87,4 @@
  ("writeroom-mode" . "1fd52848eb58301c864712fd26c4ec37a938cc19")
  ("xref" . "feb30d284d45e4904501d65b515069a1e365e07a")
  ("yaml-mode" . "535273d5a1eb76999d20afbcf4d9f056d8ffd2da"))
-:beta
+:gamma

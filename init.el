@@ -74,6 +74,10 @@
   (al-setup-font)
   )
 
+(defun al-set-font-size ()
+  (interactive "n")
+  (set-face-attribute 'default nil :height 120))
+
 
 (defun al-setup-font ()
   (interactive)
@@ -81,7 +85,7 @@
 	(y (display-pixel-height)))
     (set-frame-font "-*-IBM Plex Mono-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1")
     (if (and (> y 1000)(> x 2000))
-	(set-face-attribute 'default nil :height 140)
+	(set-face-attribute 'default nil :height 120)
       (set-face-attribute 'default nil :height 100))))
 
 ;; Treat words as sub-words.
@@ -142,20 +146,8 @@
 (setq enable-recursive-minibuffers t)
 
 
-(use-package autothemer
-  :defer t)
-
-
-;; Matrix mood.
-(use-package vegetative-theme
-  :straight (emacs-theme-vegetative :type git :host github :repo "emacsfodder/emacs-theme-vegetative")
-  :config
-  (al-setup-look)
-  (load-theme 'vegetative t)
-  )
-
 ;; The light modus theme.
-'(use-package modus-themes
+(use-package modus-themes
   :init
   (setq modus-themes-italic-constructs t
 	modus-themes-bold-constructs nil
@@ -184,8 +176,7 @@
 
 
 ;; Let gui emacs construct the exec-path same way as shell.
-
-(use-package exec-path-from-shell
+'(use-package exec-path-from-shell
     :when (memq window-system '(mac ns x))
     :config (exec-path-from-shell-initialize))
 
@@ -293,7 +284,20 @@
 
 ;; Practical commands (grep, find, git grep, buffer lists etc) that output via `completing-read'.
 (use-package consult
-  :bind* (	 ("C-x B" . consult-buffer)) ;; orig. switch-to-buffer)
+  :bind* (("C-x B" . consult-buffer)
+
+	 ("M-SPC s f" . consult-find)
+	 ("M-SPC s F" . consult-locate)
+	 ("M-SPC s g" . consult-grep)
+	 ("M-SPC s G" . consult-git-grep)
+	 ("M-SPC s r" . consult-ripgrep)
+	 ("M-SPC s l" . consult-line)
+	 ("M-SPC s L" . consult-line-multi)
+	 ("M-SPC s m" . consult-multi-loccur)
+	 ("M-SPC s k" . consult-keep-lines)
+	 ("M-SPC s u" . consult-focus-lines)
+         ("M-SPC s e" . consult-isearch-history)
+	  ) ;; orig. switch-to-buffer)
   :bind (
 	 ;; C-c bindings (mode-specific-map)
 	 ("M-p" . consult-history)
@@ -326,18 +330,7 @@
 	 ("M-g I" . consult-imenu-multi)
 
 	 ;; M-s bindings (search-map)
-	 ("M-s f" . consult-find)
-	 ("M-s F" . consult-locate)
-	 ("M-s g" . consult-grep)
-	 ("M-s G" . consult-git-grep)
-	 ("M-s r" . consult-ripgrep)
-	 ("M-s l" . consult-line)
-	 ("M-s L" . consult-line-multi)
-	 ("M-s m" . consult-multi-loccur)
-	 ("M-s k" . consult-keep-lines)
-	 ("M-s u" . consult-focus-lines)
 
-         ("M-s e" . consult-isearch-history)
 	 :map comint-mode-map
 	 ("M-p" . consult-history)
 	 :map isearch-mode-map
@@ -353,8 +346,6 @@
   ;; This adds thin lines, sorting and hides the mode line of the window.
   (advice-add #'register-preview :override #'consult-register-window)
 
-  ;; Enhance with consult version.
-  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
 
   ;; Use Consult to select xref locations with preview
   (setq xref-show-xrefs-function #'consult-xref
@@ -441,8 +432,11 @@ LEAF is normally ((BEG . END) . WND)."
   :defer t
   :init
   (require 'smartparens-config)
+  (sp-use-paredit-bindings)
   (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
-)
+  (add-hook 'web-mode #'smartparens-mode)
+  (add-hook 'python-mode #'smartparens-mode)
+  )
 
 
 ;; Winner undo.
@@ -533,7 +527,8 @@ LEAF is normally ((BEG . END) . WND)."
 
 ;; Writable grep buffer.
 (use-package wgrep
-  :defer t)
+  
+  )
 
 
 ;; Pulse when yank/pop
@@ -863,14 +858,31 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 
 
 ;; Visual undo.
-(use-package undo-tree
+'(use-package undo-tree
   :bind* (("C-x u" . undo-tree-visualize)
 	  ("M-SPC u" . undo-tree-visualize))
   :config
   (global-undo-tree-mode 1))
 
 ;; Roam.
-(use-package org-roam
+(use-package org
+  :straight (:type built-in)
+  :bind* (
+	  ("M-SPC o l" . 'org-store-link)
+	  ("M-SPC o a" . 'org-agenda)
+          ("M-SPC o c" . 'org-capture)
+	  ("M-SPC o t i" . 'org-clock-in)
+	  ("M-SPC o t o" . 'org-clock-out)
+	  )
+  
+  :config
+  (setq org-directory "~/org"
+	org-default-notes-file "~/org/todo.org"
+	org-log-done 'time
+	org-agenda-files '("~/org"))
+  )
+
+'(use-package org-roam
   :ensure t
   :custom
   (org-roam-directory (file-truename "~/org-roam/"))
@@ -904,7 +916,7 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 (use-package org-download
   :config
   (add-hook 'dired-mode-hook 'org-download-enable)
-  (setq org-download-image-dir "~/org-roam/.org-downloads/"))
+  (setq org-download-image-dir "~/org/.org-download/"))
 
 ;; Python black formatter.
 ;; TODO: setup per project like prettier.
@@ -971,6 +983,7 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 	  ("M-SPC a s q" . 'comint-clear-buffer))
   :config
   (al-shell-consult-setup))
+
 (use-package wrap-region
   :config
   (wrap-region-add-wrapper "`" "`")
@@ -990,4 +1003,12 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
   (require 'smartparens))
 
 (use-package cider)
+
+
+(use-package replace-from-region
+  :straight nil
+  :bind* (("M-SPC s q r" . 'query-replace-from-region)
+	  ("M-SPC s q x" . 'query-replace-regexp-from-region)
+	  ))
+
 
