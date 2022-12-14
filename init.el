@@ -70,20 +70,16 @@
 
   (global-hl-line-mode 1)
   (setq inhibit-startup-message t
-      inhibit-startup-echo-area-message t)
-  (al-setup-font)
-  )
+	inhibit-startup-echo-area-message t)
 
-(defun al-set-font-size ()
-  (interactive "n")
-  (set-face-attribute 'default nil :height 120))
+  (set-face-attribute 'default nil :height 90))
 
 
-(defun al-setup-font ()
+'(defun al-setup-font ()
   (interactive)
   (let ((x (display-pixel-width))
 	(y (display-pixel-height)))
-    (set-frame-font "-*-IBM Plex Mono-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1")
+    '(set-frame-font "-*-IBM Plex Mono-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1")
     (if (and (> y 1000)(> x 2000))
 	(set-face-attribute 'default nil :height 120)
       (set-face-attribute 'default nil :height 100))))
@@ -154,9 +150,9 @@
 	modus-themes-region '( accented))
   (modus-themes-load-themes)
   :config
-  (modus-themes-load-vivendi)
+  (modus-themes-load-operandi)
   (al-setup-look)
-  (custom-set-faces
+  '(custom-set-faces
    '(avy-lead-face ((t (:inherit (bold modus-themes-reset-soft) :background "#0050af" :height 0.8))))
    '(aw-leading-char-face ((t (:inherit (bold modus-themes-reset-soft) :foreground "#fe6060" :height 1)))))
   )
@@ -864,7 +860,6 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
   :config
   (global-undo-tree-mode 1))
 
-;; Roam.
 (use-package org
   :straight (:type built-in)
   :bind* (
@@ -879,9 +874,9 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
   (setq org-directory "~/org"
 	org-default-notes-file "~/org/todo.org"
 	org-log-done 'time
-	org-agenda-files '("~/org"))
-  )
+	org-agenda-files '("~/org")))
 
+;; TODO: remove, make place form mini-roam :P
 '(use-package org-roam
   :ensure t
   :custom
@@ -1003,12 +998,5 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
   (require 'smartparens))
 
 (use-package cider)
-
-
-(use-package replace-from-region
-  :straight nil
-  :bind* (("M-SPC s q r" . 'query-replace-from-region)
-	  ("M-SPC s q x" . 'query-replace-regexp-from-region)
-	  ))
 
 
