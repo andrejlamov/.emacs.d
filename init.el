@@ -17,7 +17,7 @@
 	 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
 	 'silent 'inhibit-cookies)
       (goto-char (point-max))
-      (eval-print-lnast-sexp)))
+      (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
 ;; Use use-package as our main package loader.
@@ -172,7 +172,7 @@
 
 
 ;; Let gui emacs construct the exec-path same way as shell.
-'(use-package exec-path-from-shell
+(use-package exec-path-from-shell
     :when (memq window-system '(mac ns x))
     :config (exec-path-from-shell-initialize))
 
