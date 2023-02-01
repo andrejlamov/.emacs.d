@@ -506,6 +506,7 @@ LEAF is normally ((BEG . END) . WND)."
 ;; "Semantic" region marker.
 (use-package expand-region
   :bind* (("C-v" . set-mark-command)
+	  ("M-V" . er/mark-symbol)
 	  ("M-v" . er/expand-region)))
 
 
