@@ -631,7 +631,7 @@ LEAF is normally ((BEG . END) . WND)."
 
 
 ;; Web-mode.
-(use-package web-mode
+'(use-package web-mode
   :config
   (setq web-mode-content-types-alist
 	'(("jsx" . "\\.js[x]?\\'"))
