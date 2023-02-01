@@ -529,7 +529,7 @@ LEAF is normally ((BEG . END) . WND)."
 
 
 ;; Pulse when yank/pop
-(use-package goggles
+'(use-package goggles
   :hook ((prog-mode text-mode) . goggles-mode)
   :config
   (setq-default goggles-pulse t))
