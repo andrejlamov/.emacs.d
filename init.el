@@ -800,11 +800,18 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 	      ("C-, e e" . al-python-shell-send-dwim)
 	      ("C-, e f" . python-shell-send-defun)
 	      ("C-, s" . run-python)
+	      ("C-, p 1" . al-docker-compose-python)
 	      ("C-, a" . pyvenv-activate)
 	      ("C-<tab>" . 'python-indent-shift-right)
 	      ("S-<tab>" . 'python-indent-shift-left)
 	      )
   :config
+  (defun al-docker-compose-python ()
+    (interactive)
+    (let ((python-shell-interpreter "docker-compose")
+          (python-shell-interpreter-args "exec app ipython -i --simple-prompt --InteractiveShell.display_page=True"))
+      (call-interactively 'run-python)))
+  
   (defun al-python-shell-send-dwim ()
     (interactive)
     (if mark-active
