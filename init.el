@@ -790,12 +790,6 @@ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cu
 (use-package anaconda-mode
   :hook (python-mode . anaconda-mode))
 
-;; LSP python.
-'(use-package lsp-pyright
-  :ensure t
-  :hook (python-mode . (lambda ()
-                          (require 'lsp-pyright)
-                          (lsp))))  ; or lsp-deferred
 
 ;; The built-in python mode with some tweaks.
 (use-package python-mode
