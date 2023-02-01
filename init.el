@@ -540,6 +540,7 @@ LEAF is normally ((BEG . END) . WND)."
   :bind (("C-<tab> p" . completion-at-point) ;; capf
 	 ("C-<tab> t" . complete-tag)        ;; etags
 	 ("C-<tab> d" . cape-dabbrev)        ;; or dabbrev-completion
+	 ("M-/" . cape-dabbrev)        ;; or dabbrev-completion
 	 ("C-<tab> f" . cape-file)
 	 ("C-<tab> k" . cape-keyword)
 	 ("C-<tab> s" . cape-symbol)
