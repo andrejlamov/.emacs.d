@@ -607,7 +607,10 @@ LEAF is normally ((BEG . END) . WND)."
 ;; LSP.
 (use-package eglot
   :config
-  (setq eglot-events-buffer-size 1000))
+  (setq eglot-events-buffer-size 1000)
+  :hook
+  (python-mode . eglot-ensure)
+  )
 
 (use-package typescript-mode)
 
